@@ -6,12 +6,13 @@ type Query{
     tshirts: [Tshirt!]!
 }
 type Mutation{
-    tshirt(title:String!,description:String!,images:[Upload!]!,contact:String):Tshirt
+    tshirt(title:String!,description:String!,price:String!,images:[Upload!]!,contact:String):Tshirt
 }
 type Tshirt{
     id: ID!
     title: String!
     description: String!
+    price: String!
     date: String!
     images: [String!]!
     contact: String!

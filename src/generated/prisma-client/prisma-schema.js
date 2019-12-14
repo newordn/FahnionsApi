@@ -56,6 +56,7 @@ type Tshirt {
   id: ID!
   title: String!
   description: String!
+  price: String!
   createdAt: DateTime!
   images: [String!]!
   contact: String!
@@ -75,6 +76,7 @@ input TshirtCreateInput {
   id: ID
   title: String!
   description: String!
+  price: String!
   images: TshirtCreateimagesInput
   contact: String!
 }
@@ -91,6 +93,8 @@ enum TshirtOrderByInput {
   title_DESC
   description_ASC
   description_DESC
+  price_ASC
+  price_DESC
   createdAt_ASC
   createdAt_DESC
   contact_ASC
@@ -101,6 +105,7 @@ type TshirtPreviousValues {
   id: ID!
   title: String!
   description: String!
+  price: String!
   createdAt: DateTime!
   images: [String!]!
   contact: String!
@@ -131,6 +136,7 @@ input TshirtUpdateimagesInput {
 input TshirtUpdateInput {
   title: String
   description: String
+  price: String
   images: TshirtUpdateimagesInput
   contact: String
 }
@@ -138,6 +144,7 @@ input TshirtUpdateInput {
 input TshirtUpdateManyMutationInput {
   title: String
   description: String
+  price: String
   images: TshirtUpdateimagesInput
   contact: String
 }
@@ -185,6 +192,20 @@ input TshirtWhereInput {
   description_not_starts_with: String
   description_ends_with: String
   description_not_ends_with: String
+  price: String
+  price_not: String
+  price_in: [String!]
+  price_not_in: [String!]
+  price_lt: String
+  price_lte: String
+  price_gt: String
+  price_gte: String
+  price_contains: String
+  price_not_contains: String
+  price_starts_with: String
+  price_not_starts_with: String
+  price_ends_with: String
+  price_not_ends_with: String
   createdAt: DateTime
   createdAt_not: DateTime
   createdAt_in: [DateTime!]

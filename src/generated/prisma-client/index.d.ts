@@ -110,6 +110,8 @@ export type TshirtOrderByInput =
   | "title_DESC"
   | "description_ASC"
   | "description_DESC"
+  | "price_ASC"
+  | "price_DESC"
   | "createdAt_ASC"
   | "createdAt_DESC"
   | "contact_ASC"
@@ -123,6 +125,7 @@ export interface TshirtCreateInput {
   id?: Maybe<ID_Input>;
   title: String;
   description: String;
+  price: String;
   images?: Maybe<TshirtCreateimagesInput>;
   contact: String;
 }
@@ -134,6 +137,7 @@ export interface TshirtCreateimagesInput {
 export interface TshirtUpdateInput {
   title?: Maybe<String>;
   description?: Maybe<String>;
+  price?: Maybe<String>;
   images?: Maybe<TshirtUpdateimagesInput>;
   contact?: Maybe<String>;
 }
@@ -196,6 +200,20 @@ export interface TshirtWhereInput {
   description_not_starts_with?: Maybe<String>;
   description_ends_with?: Maybe<String>;
   description_not_ends_with?: Maybe<String>;
+  price?: Maybe<String>;
+  price_not?: Maybe<String>;
+  price_in?: Maybe<String[] | String>;
+  price_not_in?: Maybe<String[] | String>;
+  price_lt?: Maybe<String>;
+  price_lte?: Maybe<String>;
+  price_gt?: Maybe<String>;
+  price_gte?: Maybe<String>;
+  price_contains?: Maybe<String>;
+  price_not_contains?: Maybe<String>;
+  price_starts_with?: Maybe<String>;
+  price_not_starts_with?: Maybe<String>;
+  price_ends_with?: Maybe<String>;
+  price_not_ends_with?: Maybe<String>;
   createdAt?: Maybe<DateTimeInput>;
   createdAt_not?: Maybe<DateTimeInput>;
   createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
@@ -226,6 +244,7 @@ export interface TshirtWhereInput {
 export interface TshirtUpdateManyMutationInput {
   title?: Maybe<String>;
   description?: Maybe<String>;
+  price?: Maybe<String>;
   images?: Maybe<TshirtUpdateimagesInput>;
   contact?: Maybe<String>;
 }
@@ -287,6 +306,7 @@ export interface Tshirt {
   id: ID_Output;
   title: String;
   description: String;
+  price: String;
   createdAt: DateTimeOutput;
   images: String[];
   contact: String;
@@ -296,6 +316,7 @@ export interface TshirtPromise extends Promise<Tshirt>, Fragmentable {
   id: () => Promise<ID_Output>;
   title: () => Promise<String>;
   description: () => Promise<String>;
+  price: () => Promise<String>;
   createdAt: () => Promise<DateTimeOutput>;
   images: () => Promise<String[]>;
   contact: () => Promise<String>;
@@ -307,6 +328,7 @@ export interface TshirtSubscription
   id: () => Promise<AsyncIterator<ID_Output>>;
   title: () => Promise<AsyncIterator<String>>;
   description: () => Promise<AsyncIterator<String>>;
+  price: () => Promise<AsyncIterator<String>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   images: () => Promise<AsyncIterator<String[]>>;
   contact: () => Promise<AsyncIterator<String>>;
@@ -318,6 +340,7 @@ export interface TshirtNullablePromise
   id: () => Promise<ID_Output>;
   title: () => Promise<String>;
   description: () => Promise<String>;
+  price: () => Promise<String>;
   createdAt: () => Promise<DateTimeOutput>;
   images: () => Promise<String[]>;
   contact: () => Promise<String>;
@@ -396,6 +419,7 @@ export interface TshirtPreviousValues {
   id: ID_Output;
   title: String;
   description: String;
+  price: String;
   createdAt: DateTimeOutput;
   images: String[];
   contact: String;
@@ -407,6 +431,7 @@ export interface TshirtPreviousValuesPromise
   id: () => Promise<ID_Output>;
   title: () => Promise<String>;
   description: () => Promise<String>;
+  price: () => Promise<String>;
   createdAt: () => Promise<DateTimeOutput>;
   images: () => Promise<String[]>;
   contact: () => Promise<String>;
@@ -418,6 +443,7 @@ export interface TshirtPreviousValuesSubscription
   id: () => Promise<AsyncIterator<ID_Output>>;
   title: () => Promise<AsyncIterator<String>>;
   description: () => Promise<AsyncIterator<String>>;
+  price: () => Promise<AsyncIterator<String>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   images: () => Promise<AsyncIterator<String[]>>;
   contact: () => Promise<AsyncIterator<String>>;
