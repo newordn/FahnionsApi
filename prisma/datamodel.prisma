@@ -1,0 +1,8 @@
+type Tshirt{
+    id: ID! @id
+    title: String!
+    description: String!
+    createdAt: DateTime! @createdAt
+    images: [String!]! @scalarList(strategy: RELATION)
+    contact: String!
+}
