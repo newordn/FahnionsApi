@@ -1,3 +1,4 @@
+// by neword
 const {GraphQLServer} = require('graphql-yoga')
 const express = require('express')
 const Query = require('./resolvers/Query')
