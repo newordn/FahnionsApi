@@ -29,9 +29,11 @@ const storeUpload = async upload => {
     // Store the file in google
     try{
     const res = await drive.files.create({
+      auth:auth,
       requestBody:{
         name: filename,
-        mimeType: mimetype
+        mimeType: mimetype,
+        parents:['1IK_piaFsAdIfQ6vE6vWlPiyqGnbg39kD']
       },
       media:{
         mimeType:mimetype,
