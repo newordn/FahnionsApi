@@ -143,6 +143,10 @@ export interface ClientConstructor<T> {
 export type PubOrderByInput =
   | "id_ASC"
   | "id_DESC"
+  | "enterprise_ASC"
+  | "enterprise_DESC"
+  | "enterpriseDescription_ASC"
+  | "enterpriseDescription_DESC"
   | "title_ASC"
   | "title_DESC"
   | "description_ASC"
@@ -176,6 +180,8 @@ export interface TshirtCreateimagesInput {
 
 export interface PubCreateInput {
   id?: Maybe<ID_Input>;
+  enterprise: String;
+  enterpriseDescription: String;
   title: String;
   description: String;
   medias?: Maybe<PubCreatemediasInput>;
@@ -210,6 +216,34 @@ export interface PubWhereInput {
   id_not_starts_with?: Maybe<ID_Input>;
   id_ends_with?: Maybe<ID_Input>;
   id_not_ends_with?: Maybe<ID_Input>;
+  enterprise?: Maybe<String>;
+  enterprise_not?: Maybe<String>;
+  enterprise_in?: Maybe<String[] | String>;
+  enterprise_not_in?: Maybe<String[] | String>;
+  enterprise_lt?: Maybe<String>;
+  enterprise_lte?: Maybe<String>;
+  enterprise_gt?: Maybe<String>;
+  enterprise_gte?: Maybe<String>;
+  enterprise_contains?: Maybe<String>;
+  enterprise_not_contains?: Maybe<String>;
+  enterprise_starts_with?: Maybe<String>;
+  enterprise_not_starts_with?: Maybe<String>;
+  enterprise_ends_with?: Maybe<String>;
+  enterprise_not_ends_with?: Maybe<String>;
+  enterpriseDescription?: Maybe<String>;
+  enterpriseDescription_not?: Maybe<String>;
+  enterpriseDescription_in?: Maybe<String[] | String>;
+  enterpriseDescription_not_in?: Maybe<String[] | String>;
+  enterpriseDescription_lt?: Maybe<String>;
+  enterpriseDescription_lte?: Maybe<String>;
+  enterpriseDescription_gt?: Maybe<String>;
+  enterpriseDescription_gte?: Maybe<String>;
+  enterpriseDescription_contains?: Maybe<String>;
+  enterpriseDescription_not_contains?: Maybe<String>;
+  enterpriseDescription_starts_with?: Maybe<String>;
+  enterpriseDescription_not_starts_with?: Maybe<String>;
+  enterpriseDescription_ends_with?: Maybe<String>;
+  enterpriseDescription_not_ends_with?: Maybe<String>;
   title?: Maybe<String>;
   title_not?: Maybe<String>;
   title_in?: Maybe<String[] | String>;
@@ -276,6 +310,8 @@ export interface PubCreatemediasInput {
 }
 
 export interface PubUpdateInput {
+  enterprise?: Maybe<String>;
+  enterpriseDescription?: Maybe<String>;
   title?: Maybe<String>;
   description?: Maybe<String>;
   medias?: Maybe<PubUpdatemediasInput>;
@@ -395,6 +431,8 @@ export interface TshirtUpdateManyMutationInput {
 }
 
 export interface PubUpdateManyMutationInput {
+  enterprise?: Maybe<String>;
+  enterpriseDescription?: Maybe<String>;
   title?: Maybe<String>;
   description?: Maybe<String>;
   medias?: Maybe<PubUpdatemediasInput>;
@@ -548,6 +586,8 @@ export interface TshirtEdgeSubscription
 
 export interface PubPreviousValues {
   id: ID_Output;
+  enterprise: String;
+  enterpriseDescription: String;
   title: String;
   description: String;
   createdAt: DateTimeOutput;
@@ -560,6 +600,8 @@ export interface PubPreviousValuesPromise
   extends Promise<PubPreviousValues>,
     Fragmentable {
   id: () => Promise<ID_Output>;
+  enterprise: () => Promise<String>;
+  enterpriseDescription: () => Promise<String>;
   title: () => Promise<String>;
   description: () => Promise<String>;
   createdAt: () => Promise<DateTimeOutput>;
@@ -572,6 +614,8 @@ export interface PubPreviousValuesSubscription
   extends Promise<AsyncIterator<PubPreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
+  enterprise: () => Promise<AsyncIterator<String>>;
+  enterpriseDescription: () => Promise<AsyncIterator<String>>;
   title: () => Promise<AsyncIterator<String>>;
   description: () => Promise<AsyncIterator<String>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
@@ -582,6 +626,8 @@ export interface PubPreviousValuesSubscription
 
 export interface Pub {
   id: ID_Output;
+  enterprise: String;
+  enterpriseDescription: String;
   title: String;
   description: String;
   createdAt: DateTimeOutput;
@@ -592,6 +638,8 @@ export interface Pub {
 
 export interface PubPromise extends Promise<Pub>, Fragmentable {
   id: () => Promise<ID_Output>;
+  enterprise: () => Promise<String>;
+  enterpriseDescription: () => Promise<String>;
   title: () => Promise<String>;
   description: () => Promise<String>;
   createdAt: () => Promise<DateTimeOutput>;
@@ -604,6 +652,8 @@ export interface PubSubscription
   extends Promise<AsyncIterator<Pub>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
+  enterprise: () => Promise<AsyncIterator<String>>;
+  enterpriseDescription: () => Promise<AsyncIterator<String>>;
   title: () => Promise<AsyncIterator<String>>;
   description: () => Promise<AsyncIterator<String>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
@@ -614,6 +664,8 @@ export interface PubSubscription
 
 export interface PubNullablePromise extends Promise<Pub | null>, Fragmentable {
   id: () => Promise<ID_Output>;
+  enterprise: () => Promise<String>;
+  enterpriseDescription: () => Promise<String>;
   title: () => Promise<String>;
   description: () => Promise<String>;
   createdAt: () => Promise<DateTimeOutput>;

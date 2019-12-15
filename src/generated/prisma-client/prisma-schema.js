@@ -53,6 +53,8 @@ type PageInfo {
 
 type Pub {
   id: ID!
+  enterprise: String!
+  enterpriseDescription: String!
   title: String!
   description: String!
   createdAt: DateTime!
@@ -69,6 +71,8 @@ type PubConnection {
 
 input PubCreateInput {
   id: ID
+  enterprise: String!
+  enterpriseDescription: String!
   title: String!
   description: String!
   medias: PubCreatemediasInput
@@ -88,6 +92,10 @@ type PubEdge {
 enum PubOrderByInput {
   id_ASC
   id_DESC
+  enterprise_ASC
+  enterprise_DESC
+  enterpriseDescription_ASC
+  enterpriseDescription_DESC
   title_ASC
   title_DESC
   description_ASC
@@ -102,6 +110,8 @@ enum PubOrderByInput {
 
 type PubPreviousValues {
   id: ID!
+  enterprise: String!
+  enterpriseDescription: String!
   title: String!
   description: String!
   createdAt: DateTime!
@@ -129,6 +139,8 @@ input PubSubscriptionWhereInput {
 }
 
 input PubUpdateInput {
+  enterprise: String
+  enterpriseDescription: String
   title: String
   description: String
   medias: PubUpdatemediasInput
@@ -137,6 +149,8 @@ input PubUpdateInput {
 }
 
 input PubUpdateManyMutationInput {
+  enterprise: String
+  enterpriseDescription: String
   title: String
   description: String
   medias: PubUpdatemediasInput
@@ -163,6 +177,34 @@ input PubWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
+  enterprise: String
+  enterprise_not: String
+  enterprise_in: [String!]
+  enterprise_not_in: [String!]
+  enterprise_lt: String
+  enterprise_lte: String
+  enterprise_gt: String
+  enterprise_gte: String
+  enterprise_contains: String
+  enterprise_not_contains: String
+  enterprise_starts_with: String
+  enterprise_not_starts_with: String
+  enterprise_ends_with: String
+  enterprise_not_ends_with: String
+  enterpriseDescription: String
+  enterpriseDescription_not: String
+  enterpriseDescription_in: [String!]
+  enterpriseDescription_not_in: [String!]
+  enterpriseDescription_lt: String
+  enterpriseDescription_lte: String
+  enterpriseDescription_gt: String
+  enterpriseDescription_gte: String
+  enterpriseDescription_contains: String
+  enterpriseDescription_not_contains: String
+  enterpriseDescription_starts_with: String
+  enterpriseDescription_not_starts_with: String
+  enterpriseDescription_ends_with: String
+  enterpriseDescription_not_ends_with: String
   title: String
   title_not: String
   title_in: [String!]
