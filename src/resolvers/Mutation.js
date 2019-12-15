@@ -10,7 +10,7 @@ async function pub(parent,args,context,info)
 {
     let files = await Promise.all(args.images.map(async v=>await context.storeUpload(v)))
     files = files.map(v=>v.path)
-    const pub = await context.prisma.createPub({...args,medias:{set:files}})
+    const pub = await context.prisma.createPub({...args,status:false,medias:{set:files}})
     return pub
 }
 

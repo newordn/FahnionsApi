@@ -150,7 +150,9 @@ export type PubOrderByInput =
   | "createdAt_ASC"
   | "createdAt_DESC"
   | "contact_ASC"
-  | "contact_DESC";
+  | "contact_DESC"
+  | "status_ASC"
+  | "status_DESC";
 
 export type TshirtOrderByInput =
   | "id_ASC"
@@ -178,6 +180,7 @@ export interface PubCreateInput {
   description: String;
   medias?: Maybe<PubCreatemediasInput>;
   contact?: Maybe<String>;
+  status: Boolean;
 }
 
 export type TshirtWhereUniqueInput = AtLeastOne<{
@@ -257,6 +260,8 @@ export interface PubWhereInput {
   contact_not_starts_with?: Maybe<String>;
   contact_ends_with?: Maybe<String>;
   contact_not_ends_with?: Maybe<String>;
+  status?: Maybe<Boolean>;
+  status_not?: Maybe<Boolean>;
   AND?: Maybe<PubWhereInput[] | PubWhereInput>;
   OR?: Maybe<PubWhereInput[] | PubWhereInput>;
   NOT?: Maybe<PubWhereInput[] | PubWhereInput>;
@@ -275,6 +280,7 @@ export interface PubUpdateInput {
   description?: Maybe<String>;
   medias?: Maybe<PubUpdatemediasInput>;
   contact?: Maybe<String>;
+  status?: Maybe<Boolean>;
 }
 
 export interface PubSubscriptionWhereInput {
@@ -393,6 +399,7 @@ export interface PubUpdateManyMutationInput {
   description?: Maybe<String>;
   medias?: Maybe<PubUpdatemediasInput>;
   contact?: Maybe<String>;
+  status?: Maybe<Boolean>;
 }
 
 export interface TshirtCreateInput {
@@ -419,27 +426,25 @@ export interface NodeNode {
   id: ID_Output;
 }
 
-export interface PageInfo {
-  hasNextPage: Boolean;
-  hasPreviousPage: Boolean;
-  startCursor?: String;
-  endCursor?: String;
+export interface PubConnection {
+  pageInfo: PageInfo;
+  edges: PubEdge[];
 }
 
-export interface PageInfoPromise extends Promise<PageInfo>, Fragmentable {
-  hasNextPage: () => Promise<Boolean>;
-  hasPreviousPage: () => Promise<Boolean>;
-  startCursor: () => Promise<String>;
-  endCursor: () => Promise<String>;
-}
-
-export interface PageInfoSubscription
-  extends Promise<AsyncIterator<PageInfo>>,
+export interface PubConnectionPromise
+  extends Promise<PubConnection>,
     Fragmentable {
-  hasNextPage: () => Promise<AsyncIterator<Boolean>>;
-  hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
-  startCursor: () => Promise<AsyncIterator<String>>;
-  endCursor: () => Promise<AsyncIterator<String>>;
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<PubEdge>>() => T;
+  aggregate: <T = AggregatePubPromise>() => T;
+}
+
+export interface PubConnectionSubscription
+  extends Promise<AsyncIterator<PubConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<PubEdgeSubscription>>>() => T;
+  aggregate: <T = AggregatePubSubscription>() => T;
 }
 
 export interface TshirtPreviousValues {
@@ -476,42 +481,27 @@ export interface TshirtPreviousValuesSubscription
   contact: () => Promise<AsyncIterator<String>>;
 }
 
-export interface PubConnection {
-  pageInfo: PageInfo;
-  edges: PubEdge[];
+export interface PageInfo {
+  hasNextPage: Boolean;
+  hasPreviousPage: Boolean;
+  startCursor?: String;
+  endCursor?: String;
 }
 
-export interface PubConnectionPromise
-  extends Promise<PubConnection>,
+export interface PageInfoPromise extends Promise<PageInfo>, Fragmentable {
+  hasNextPage: () => Promise<Boolean>;
+  hasPreviousPage: () => Promise<Boolean>;
+  startCursor: () => Promise<String>;
+  endCursor: () => Promise<String>;
+}
+
+export interface PageInfoSubscription
+  extends Promise<AsyncIterator<PageInfo>>,
     Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<PubEdge>>() => T;
-  aggregate: <T = AggregatePubPromise>() => T;
-}
-
-export interface PubConnectionSubscription
-  extends Promise<AsyncIterator<PubConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<PubEdgeSubscription>>>() => T;
-  aggregate: <T = AggregatePubSubscription>() => T;
-}
-
-export interface TshirtEdge {
-  node: Tshirt;
-  cursor: String;
-}
-
-export interface TshirtEdgePromise extends Promise<TshirtEdge>, Fragmentable {
-  node: <T = TshirtPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface TshirtEdgeSubscription
-  extends Promise<AsyncIterator<TshirtEdge>>,
-    Fragmentable {
-  node: <T = TshirtSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
+  hasNextPage: () => Promise<AsyncIterator<Boolean>>;
+  hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
+  startCursor: () => Promise<AsyncIterator<String>>;
+  endCursor: () => Promise<AsyncIterator<String>>;
 }
 
 export interface PubSubscriptionPayload {
@@ -539,6 +529,23 @@ export interface PubSubscriptionPayloadSubscription
   previousValues: <T = PubPreviousValuesSubscription>() => T;
 }
 
+export interface TshirtEdge {
+  node: Tshirt;
+  cursor: String;
+}
+
+export interface TshirtEdgePromise extends Promise<TshirtEdge>, Fragmentable {
+  node: <T = TshirtPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface TshirtEdgeSubscription
+  extends Promise<AsyncIterator<TshirtEdge>>,
+    Fragmentable {
+  node: <T = TshirtSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
 export interface PubPreviousValues {
   id: ID_Output;
   title: String;
@@ -546,6 +553,7 @@ export interface PubPreviousValues {
   createdAt: DateTimeOutput;
   medias: String[];
   contact?: String;
+  status: Boolean;
 }
 
 export interface PubPreviousValuesPromise
@@ -557,6 +565,7 @@ export interface PubPreviousValuesPromise
   createdAt: () => Promise<DateTimeOutput>;
   medias: () => Promise<String[]>;
   contact: () => Promise<String>;
+  status: () => Promise<Boolean>;
 }
 
 export interface PubPreviousValuesSubscription
@@ -568,22 +577,49 @@ export interface PubPreviousValuesSubscription
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   medias: () => Promise<AsyncIterator<String[]>>;
   contact: () => Promise<AsyncIterator<String>>;
+  status: () => Promise<AsyncIterator<Boolean>>;
 }
 
-export interface AggregatePub {
-  count: Int;
+export interface Pub {
+  id: ID_Output;
+  title: String;
+  description: String;
+  createdAt: DateTimeOutput;
+  medias: String[];
+  contact?: String;
+  status: Boolean;
 }
 
-export interface AggregatePubPromise
-  extends Promise<AggregatePub>,
+export interface PubPromise extends Promise<Pub>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  title: () => Promise<String>;
+  description: () => Promise<String>;
+  createdAt: () => Promise<DateTimeOutput>;
+  medias: () => Promise<String[]>;
+  contact: () => Promise<String>;
+  status: () => Promise<Boolean>;
+}
+
+export interface PubSubscription
+  extends Promise<AsyncIterator<Pub>>,
     Fragmentable {
-  count: () => Promise<Int>;
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  title: () => Promise<AsyncIterator<String>>;
+  description: () => Promise<AsyncIterator<String>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  medias: () => Promise<AsyncIterator<String[]>>;
+  contact: () => Promise<AsyncIterator<String>>;
+  status: () => Promise<AsyncIterator<Boolean>>;
 }
 
-export interface AggregatePubSubscription
-  extends Promise<AsyncIterator<AggregatePub>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
+export interface PubNullablePromise extends Promise<Pub | null>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  title: () => Promise<String>;
+  description: () => Promise<String>;
+  createdAt: () => Promise<DateTimeOutput>;
+  medias: () => Promise<String[]>;
+  contact: () => Promise<String>;
+  status: () => Promise<Boolean>;
 }
 
 export interface TshirtConnection {
@@ -623,41 +659,47 @@ export interface AggregateTshirtSubscription
   count: () => Promise<AsyncIterator<Int>>;
 }
 
-export interface Pub {
+export interface Tshirt {
   id: ID_Output;
   title: String;
   description: String;
+  price: String;
   createdAt: DateTimeOutput;
-  medias: String[];
-  contact?: String;
+  images: String[];
+  contact: String;
 }
 
-export interface PubPromise extends Promise<Pub>, Fragmentable {
+export interface TshirtPromise extends Promise<Tshirt>, Fragmentable {
   id: () => Promise<ID_Output>;
   title: () => Promise<String>;
   description: () => Promise<String>;
+  price: () => Promise<String>;
   createdAt: () => Promise<DateTimeOutput>;
-  medias: () => Promise<String[]>;
+  images: () => Promise<String[]>;
   contact: () => Promise<String>;
 }
 
-export interface PubSubscription
-  extends Promise<AsyncIterator<Pub>>,
+export interface TshirtSubscription
+  extends Promise<AsyncIterator<Tshirt>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   title: () => Promise<AsyncIterator<String>>;
   description: () => Promise<AsyncIterator<String>>;
+  price: () => Promise<AsyncIterator<String>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  medias: () => Promise<AsyncIterator<String[]>>;
+  images: () => Promise<AsyncIterator<String[]>>;
   contact: () => Promise<AsyncIterator<String>>;
 }
 
-export interface PubNullablePromise extends Promise<Pub | null>, Fragmentable {
+export interface TshirtNullablePromise
+  extends Promise<Tshirt | null>,
+    Fragmentable {
   id: () => Promise<ID_Output>;
   title: () => Promise<String>;
   description: () => Promise<String>;
+  price: () => Promise<String>;
   createdAt: () => Promise<DateTimeOutput>;
-  medias: () => Promise<String[]>;
+  images: () => Promise<String[]>;
   contact: () => Promise<String>;
 }
 
@@ -719,48 +761,20 @@ export interface BatchPayloadSubscription
   count: () => Promise<AsyncIterator<Long>>;
 }
 
-export interface Tshirt {
-  id: ID_Output;
-  title: String;
-  description: String;
-  price: String;
-  createdAt: DateTimeOutput;
-  images: String[];
-  contact: String;
+export interface AggregatePub {
+  count: Int;
 }
 
-export interface TshirtPromise extends Promise<Tshirt>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  title: () => Promise<String>;
-  description: () => Promise<String>;
-  price: () => Promise<String>;
-  createdAt: () => Promise<DateTimeOutput>;
-  images: () => Promise<String[]>;
-  contact: () => Promise<String>;
-}
-
-export interface TshirtSubscription
-  extends Promise<AsyncIterator<Tshirt>>,
+export interface AggregatePubPromise
+  extends Promise<AggregatePub>,
     Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  title: () => Promise<AsyncIterator<String>>;
-  description: () => Promise<AsyncIterator<String>>;
-  price: () => Promise<AsyncIterator<String>>;
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  images: () => Promise<AsyncIterator<String[]>>;
-  contact: () => Promise<AsyncIterator<String>>;
+  count: () => Promise<Int>;
 }
 
-export interface TshirtNullablePromise
-  extends Promise<Tshirt | null>,
+export interface AggregatePubSubscription
+  extends Promise<AsyncIterator<AggregatePub>>,
     Fragmentable {
-  id: () => Promise<ID_Output>;
-  title: () => Promise<String>;
-  description: () => Promise<String>;
-  price: () => Promise<String>;
-  createdAt: () => Promise<DateTimeOutput>;
-  images: () => Promise<String[]>;
-  contact: () => Promise<String>;
+  count: () => Promise<AsyncIterator<Int>>;
 }
 
 /*

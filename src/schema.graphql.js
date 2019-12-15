@@ -26,6 +26,7 @@ type Pub{
     date:String!
     medias: [String!]!
     contact: String
+    status : Boolean!
 }
 `
 module.exports ={

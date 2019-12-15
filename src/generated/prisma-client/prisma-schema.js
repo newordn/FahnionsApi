@@ -58,6 +58,7 @@ type Pub {
   createdAt: DateTime!
   medias: [String!]!
   contact: String
+  status: Boolean!
 }
 
 type PubConnection {
@@ -72,6 +73,7 @@ input PubCreateInput {
   description: String!
   medias: PubCreatemediasInput
   contact: String
+  status: Boolean!
 }
 
 input PubCreatemediasInput {
@@ -94,6 +96,8 @@ enum PubOrderByInput {
   createdAt_DESC
   contact_ASC
   contact_DESC
+  status_ASC
+  status_DESC
 }
 
 type PubPreviousValues {
@@ -103,6 +107,7 @@ type PubPreviousValues {
   createdAt: DateTime!
   medias: [String!]!
   contact: String
+  status: Boolean!
 }
 
 type PubSubscriptionPayload {
@@ -128,6 +133,7 @@ input PubUpdateInput {
   description: String
   medias: PubUpdatemediasInput
   contact: String
+  status: Boolean
 }
 
 input PubUpdateManyMutationInput {
@@ -135,6 +141,7 @@ input PubUpdateManyMutationInput {
   description: String
   medias: PubUpdatemediasInput
   contact: String
+  status: Boolean
 }
 
 input PubUpdatemediasInput {
@@ -206,6 +213,8 @@ input PubWhereInput {
   contact_not_starts_with: String
   contact_ends_with: String
   contact_not_ends_with: String
+  status: Boolean
+  status_not: Boolean
   AND: [PubWhereInput!]
   OR: [PubWhereInput!]
   NOT: [PubWhereInput!]
