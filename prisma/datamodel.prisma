@@ -9,6 +9,8 @@ type Tshirt{
 }
 type Pub{
     id:ID! @id
+    enterprise:String!
+    enterpriseDescription:String!
     title: String!
     description:String!
     createdAt: DateTime! @createdAt

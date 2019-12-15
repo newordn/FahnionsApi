@@ -8,7 +8,7 @@ type Query{
 }
 type Mutation{
     tshirt(title:String!,description:String!,price:String!,images:[Upload!]!,contact:String):Tshirt
-    pub(title:String!,description:String!,medias:[Upload!]!,contact:String!):Pub
+    pub(enterprise:String!,enterpriseDescription:String!,title:String!,description:String!,medias:[Upload!]!,contact:String!):Pub
 }
 type Tshirt{
     id: ID!
@@ -21,6 +21,8 @@ type Tshirt{
 }
 type Pub{
     id:ID!
+    enterprise:String!
+    enterpriseDescription:String!
     title: String!
     description:String!
     date:String!
