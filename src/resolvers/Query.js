@@ -5,7 +5,14 @@ async function tshirts(parent,args,context,info){
     
     return tshirts
 }
+
+async function pubs(parent,args,context,info){
+    let pubs = await context.prisma.pubs({orderBy:'id_DESC'})
+    
+    return pubs
+}
 module.exports={
    info,
-    tshirts
+    tshirts,
+    pubs
 }

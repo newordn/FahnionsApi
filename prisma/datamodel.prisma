@@ -7,3 +7,11 @@ type Tshirt{
     images: [String!]! @scalarList(strategy: RELATION)
     contact: String!
 }
+type Pub{
+    id:ID! @id
+    title: String!
+    description:String!
+    createdAt: DateTime! @createdAt
+    medias: [String!]! @scalarList(strategy: RELATION)
+    contact: String
+}

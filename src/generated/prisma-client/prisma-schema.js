@@ -3,7 +3,11 @@ module.exports = {
   // Please don't change this file manually but run `prisma generate` to update it.
   // For more information, please read the docs: https://www.prisma.io/docs/prisma-client/
 
-/* GraphQL */ `type AggregateTshirt {
+/* GraphQL */ `type AggregatePub {
+  count: Int!
+}
+
+type AggregateTshirt {
   count: Int!
 }
 
@@ -16,6 +20,12 @@ scalar DateTime
 scalar Long
 
 type Mutation {
+  createPub(data: PubCreateInput!): Pub!
+  updatePub(data: PubUpdateInput!, where: PubWhereUniqueInput!): Pub
+  updateManyPubs(data: PubUpdateManyMutationInput!, where: PubWhereInput): BatchPayload!
+  upsertPub(where: PubWhereUniqueInput!, create: PubCreateInput!, update: PubUpdateInput!): Pub!
+  deletePub(where: PubWhereUniqueInput!): Pub
+  deleteManyPubs(where: PubWhereInput): BatchPayload!
   createTshirt(data: TshirtCreateInput!): Tshirt!
   updateTshirt(data: TshirtUpdateInput!, where: TshirtWhereUniqueInput!): Tshirt
   updateManyTshirts(data: TshirtUpdateManyMutationInput!, where: TshirtWhereInput): BatchPayload!
@@ -41,7 +51,174 @@ type PageInfo {
   endCursor: String
 }
 
+type Pub {
+  id: ID!
+  title: String!
+  description: String!
+  createdAt: DateTime!
+  medias: [String!]!
+  contact: String
+}
+
+type PubConnection {
+  pageInfo: PageInfo!
+  edges: [PubEdge]!
+  aggregate: AggregatePub!
+}
+
+input PubCreateInput {
+  id: ID
+  title: String!
+  description: String!
+  medias: PubCreatemediasInput
+  contact: String
+}
+
+input PubCreatemediasInput {
+  set: [String!]
+}
+
+type PubEdge {
+  node: Pub!
+  cursor: String!
+}
+
+enum PubOrderByInput {
+  id_ASC
+  id_DESC
+  title_ASC
+  title_DESC
+  description_ASC
+  description_DESC
+  createdAt_ASC
+  createdAt_DESC
+  contact_ASC
+  contact_DESC
+}
+
+type PubPreviousValues {
+  id: ID!
+  title: String!
+  description: String!
+  createdAt: DateTime!
+  medias: [String!]!
+  contact: String
+}
+
+type PubSubscriptionPayload {
+  mutation: MutationType!
+  node: Pub
+  updatedFields: [String!]
+  previousValues: PubPreviousValues
+}
+
+input PubSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: PubWhereInput
+  AND: [PubSubscriptionWhereInput!]
+  OR: [PubSubscriptionWhereInput!]
+  NOT: [PubSubscriptionWhereInput!]
+}
+
+input PubUpdateInput {
+  title: String
+  description: String
+  medias: PubUpdatemediasInput
+  contact: String
+}
+
+input PubUpdateManyMutationInput {
+  title: String
+  description: String
+  medias: PubUpdatemediasInput
+  contact: String
+}
+
+input PubUpdatemediasInput {
+  set: [String!]
+}
+
+input PubWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  title: String
+  title_not: String
+  title_in: [String!]
+  title_not_in: [String!]
+  title_lt: String
+  title_lte: String
+  title_gt: String
+  title_gte: String
+  title_contains: String
+  title_not_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  contact: String
+  contact_not: String
+  contact_in: [String!]
+  contact_not_in: [String!]
+  contact_lt: String
+  contact_lte: String
+  contact_gt: String
+  contact_gte: String
+  contact_contains: String
+  contact_not_contains: String
+  contact_starts_with: String
+  contact_not_starts_with: String
+  contact_ends_with: String
+  contact_not_ends_with: String
+  AND: [PubWhereInput!]
+  OR: [PubWhereInput!]
+  NOT: [PubWhereInput!]
+}
+
+input PubWhereUniqueInput {
+  id: ID
+}
+
 type Query {
+  pub(where: PubWhereUniqueInput!): Pub
+  pubs(where: PubWhereInput, orderBy: PubOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Pub]!
+  pubsConnection(where: PubWhereInput, orderBy: PubOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PubConnection!
   tshirt(where: TshirtWhereUniqueInput!): Tshirt
   tshirts(where: TshirtWhereInput, orderBy: TshirtOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Tshirt]!
   tshirtsConnection(where: TshirtWhereInput, orderBy: TshirtOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): TshirtConnection!
@@ -49,6 +226,7 @@ type Query {
 }
 
 type Subscription {
+  pub(where: PubSubscriptionWhereInput): PubSubscriptionPayload
   tshirt(where: TshirtSubscriptionWhereInput): TshirtSubscriptionPayload
 }
 
