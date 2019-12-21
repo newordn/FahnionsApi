@@ -6,6 +6,10 @@ type Query{
     tshirts: [Tshirt!]!
     pubs: [Pub!]!
 }
+type Subscription{
+    newTshirt:Tshirt
+    newPub: Pub
+}
 type Mutation{
     tshirt(title:String!,description:String!,price:String!,images:[Upload!]!,contact:String):Tshirt
     pub(enterprise:String!,enterpriseDescription:String!,title:String!,description:String!,medias:[Upload!]!,contact:String!):Pub

@@ -10,12 +10,14 @@ const {typeDefs} = require('./schema.graphql.js')
 const {makeExecutableSchema} = require('graphql-tools')
 const Tshirt = require('./resolvers/Tshirt')
 const Pub = require('./resolvers/Pub')
+const Subscription = require('./resolvers/Subscription')
 const resolvers = {
     Query,
     Mutation,
     Tshirt,
     Pub,
-    Upload: GraphQLUpload
+    Upload: GraphQLUpload,
+    Subscription
 }
 const schema = makeExecutableSchema({typeDefs,resolvers})
 const server = new GraphQLServer({
