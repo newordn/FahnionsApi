@@ -5,7 +5,7 @@ type Query{
     info: String!
     tshirts: [Tshirt!]!
     pubs: [Pub!]!
-    profils:[profils!]!
+    profils:[Profil!]!
 }
 type Subscription{
     newTshirt:Tshirt
