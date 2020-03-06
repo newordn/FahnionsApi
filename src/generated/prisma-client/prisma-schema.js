@@ -32,20 +32,8 @@ type Mutation {
   upsertTshirt(where: TshirtWhereUniqueInput!, create: TshirtCreateInput!, update: TshirtUpdateInput!): Tshirt!
   deleteTshirt(where: TshirtWhereUniqueInput!): Tshirt
   deleteManyTshirts(where: TshirtWhereInput): BatchPayload!
-  profil(data:ProfilInput!):Profil!
-  
 
 }
-type Profil{
-  id:ID!
-  Nom_user:String!
-  ville_residence:String!
-  Quartier:String!
-  Email:String!
-  contact:String!
-  password:String!
-}
-
 enum MutationType {
   CREATED
   UPDATED
@@ -80,15 +68,7 @@ type PubConnection {
   edges: [PubEdge]!
   aggregate: AggregatePub!
 }
-input ProfilInput{
-  id:ID!
-  Nom_user:String!
-  ville_residence:String!
-  Quartier:String!
-  Email:String!
-  telephone:String!
-  password:String!
-}
+
 input PubCreateInput {
   id: ID
   enterprise: String!
