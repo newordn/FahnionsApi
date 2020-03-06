@@ -13,7 +13,7 @@ type Subscription{
 type Mutation{
     tshirt(title:String!,description:String!,price:String!,images:[Upload!]!,contact:String):Tshirt
     pub(enterprise:String!,enterpriseDescription:String!,title:String!,description:String!,medias:[Upload!]!,contact:String!):Pub
-    CreateProfil(Nom_user:String!, ville_residence:String!,Quartier:String!,Email:String!,telephone:String!,password:String!): Profil
+    profil(Nom_user:String!, ville_residence:String!,Quartier:String!,Email:String!,telephone:String!,password:String!): Profil
 }
 type Profil{
     id:ID!

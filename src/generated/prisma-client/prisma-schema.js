@@ -32,7 +32,7 @@ type Mutation {
   upsertTshirt(where: TshirtWhereUniqueInput!, create: TshirtCreateInput!, update: TshirtUpdateInput!): Tshirt!
   deleteTshirt(where: TshirtWhereUniqueInput!): Tshirt
   deleteManyTshirts(where: TshirtWhereInput): BatchPayload!
-  CreateProfil(data:ProfilCreateInput!):Profil!
+  profil(data:ProfilCreateInput!):Profil!
   
 
 }
