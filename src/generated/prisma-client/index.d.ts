@@ -18,7 +18,6 @@ export type Maybe<T> = T | undefined | null;
 export interface Exists {
   pub: (where?: PubWhereInput) => Promise<boolean>;
   tshirt: (where?: TshirtWhereInput) => Promise<boolean>;
-  profil: (where?: ProfilWhereInput) => Promise<boolean>;
 }
 
 export interface Node {}
