@@ -11,8 +11,14 @@ async function pubs(parent,args,context,info){
     
     return pubs
 }
+async function profils(parent,args,context,info){
+    let pubs = await context.prisma.profils({orderBy:'id_DESC'}) 
+     
+    return profils
+}
 module.exports={
    info,
     tshirts,
-    pubs
+    pubs,
+    profils
 }

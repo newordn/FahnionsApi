@@ -5,6 +5,7 @@ type Query{
     info: String!
     tshirts: [Tshirt!]!
     pubs: [Pub!]!
+    profils:[profils!]!
 }
 type Subscription{
     newTshirt:Tshirt
@@ -13,7 +14,7 @@ type Subscription{
 type Mutation{
     tshirt(title:String!,description:String!,price:String!,images:[Upload!]!,contact:String):Tshirt
     pub(enterprise:String!,enterpriseDescription:String!,title:String!,description:String!,medias:[Upload!]!,contact:String!):Pub
-    profil(Nom_user:String!, ville_residence:String!,Quartier:String!,Email:String!,telephone:String!,password:String!): Profil
+    profil(Nom_user:String!, ville_residence:String!,Quartier:String!,Email:String!,contact:String!,password:String!): Profil
 }
 type Profil{
     id:ID!
@@ -21,7 +22,7 @@ type Profil{
     ville_residence:String!
     Quartier:String!
     Email:String!
-    telephone:String!
+    contact:String!
     password:String!
   }
 type Tshirt{
