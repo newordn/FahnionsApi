@@ -32,7 +32,7 @@ type Mutation {
   upsertTshirt(where: TshirtWhereUniqueInput!, create: TshirtCreateInput!, update: TshirtUpdateInput!): Tshirt!
   deleteTshirt(where: TshirtWhereUniqueInput!): Tshirt
   deleteManyTshirts(where: TshirtWhereInput): BatchPayload!
-  profil(data:ProfilCreateInput!):Profil!
+  profil(data:ProfilInput!):Profil!
   
 
 }
@@ -80,7 +80,7 @@ type PubConnection {
   edges: [PubEdge]!
   aggregate: AggregatePub!
 }
-input ProfilCreateInput{
+input ProfilInput{
   id:ID!
   Nom_user:String!
   ville_residence:String!
