@@ -274,7 +274,6 @@ type Query {
   tshirts(where: TshirtWhereInput, orderBy: TshirtOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Tshirt]!
   tshirtsConnection(where: TshirtWhereInput, orderBy: TshirtOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): TshirtConnection!
   node(id: ID!): Node
-  profils(where:ProfilWhereInput,orderBy: ProfilOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int):[Profil]!
 }
 
 type Subscription {
