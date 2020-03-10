@@ -15,9 +15,8 @@ async function pub(parent,args,context,info)
 }
 async function profil(parent,args,context,info)
 {
-    let files = await Promise.all(args.medias.map(async v=>await context.storeUpload(v)))
-    files = files.map(v=>v.path)
-    const profil = await context.prisma.profil({...args,status:false,medias:{set:files}})
+    console.log(args)
+    const profil = await context.prisma.createProfil({...args})
     return profil
 }
 
