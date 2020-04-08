@@ -18,3 +18,15 @@ type Pub{
     contact: String
     status : Boolean!
 }
+type Profil{
+    id: ID! @id
+    name: String!
+    pays: String!
+    ville: String!
+    quartier: String!
+    email: String
+    phone: String!
+    password: String!
+    avatar: String!
+    createdAt: DateTime! @createdAt
+}

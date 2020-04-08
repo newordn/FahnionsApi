@@ -3,7 +3,11 @@ module.exports = {
   // Please don't change this file manually but run `prisma generate` to update it.
   // For more information, please read the docs: https://www.prisma.io/docs/prisma-client/
 
-/* GraphQL */ `type AggregatePub {
+/* GraphQL */ `type AggregateProfil {
+  count: Int!
+}
+
+type AggregatePub {
   count: Int!
 }
 
@@ -20,6 +24,12 @@ scalar DateTime
 scalar Long
 
 type Mutation {
+  createProfil(data: ProfilCreateInput!): Profil!
+  updateProfil(data: ProfilUpdateInput!, where: ProfilWhereUniqueInput!): Profil
+  updateManyProfils(data: ProfilUpdateManyMutationInput!, where: ProfilWhereInput): BatchPayload!
+  upsertProfil(where: ProfilWhereUniqueInput!, create: ProfilCreateInput!, update: ProfilUpdateInput!): Profil!
+  deleteProfil(where: ProfilWhereUniqueInput!): Profil
+  deleteManyProfils(where: ProfilWhereInput): BatchPayload!
   createPub(data: PubCreateInput!): Pub!
   updatePub(data: PubUpdateInput!, where: PubWhereUniqueInput!): Pub
   updateManyPubs(data: PubUpdateManyMutationInput!, where: PubWhereInput): BatchPayload!
@@ -49,6 +59,262 @@ type PageInfo {
   hasPreviousPage: Boolean!
   startCursor: String
   endCursor: String
+}
+
+type Profil {
+  id: ID!
+  name: String!
+  pays: String!
+  ville: String!
+  quartier: String!
+  email: String
+  phone: String!
+  password: String!
+  avatar: String!
+  createdAt: DateTime!
+}
+
+type ProfilConnection {
+  pageInfo: PageInfo!
+  edges: [ProfilEdge]!
+  aggregate: AggregateProfil!
+}
+
+input ProfilCreateInput {
+  id: ID
+  name: String!
+  pays: String!
+  ville: String!
+  quartier: String!
+  email: String
+  phone: String!
+  password: String!
+  avatar: String!
+}
+
+type ProfilEdge {
+  node: Profil!
+  cursor: String!
+}
+
+enum ProfilOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  pays_ASC
+  pays_DESC
+  ville_ASC
+  ville_DESC
+  quartier_ASC
+  quartier_DESC
+  email_ASC
+  email_DESC
+  phone_ASC
+  phone_DESC
+  password_ASC
+  password_DESC
+  avatar_ASC
+  avatar_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type ProfilPreviousValues {
+  id: ID!
+  name: String!
+  pays: String!
+  ville: String!
+  quartier: String!
+  email: String
+  phone: String!
+  password: String!
+  avatar: String!
+  createdAt: DateTime!
+}
+
+type ProfilSubscriptionPayload {
+  mutation: MutationType!
+  node: Profil
+  updatedFields: [String!]
+  previousValues: ProfilPreviousValues
+}
+
+input ProfilSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: ProfilWhereInput
+  AND: [ProfilSubscriptionWhereInput!]
+  OR: [ProfilSubscriptionWhereInput!]
+  NOT: [ProfilSubscriptionWhereInput!]
+}
+
+input ProfilUpdateInput {
+  name: String
+  pays: String
+  ville: String
+  quartier: String
+  email: String
+  phone: String
+  password: String
+  avatar: String
+}
+
+input ProfilUpdateManyMutationInput {
+  name: String
+  pays: String
+  ville: String
+  quartier: String
+  email: String
+  phone: String
+  password: String
+  avatar: String
+}
+
+input ProfilWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  pays: String
+  pays_not: String
+  pays_in: [String!]
+  pays_not_in: [String!]
+  pays_lt: String
+  pays_lte: String
+  pays_gt: String
+  pays_gte: String
+  pays_contains: String
+  pays_not_contains: String
+  pays_starts_with: String
+  pays_not_starts_with: String
+  pays_ends_with: String
+  pays_not_ends_with: String
+  ville: String
+  ville_not: String
+  ville_in: [String!]
+  ville_not_in: [String!]
+  ville_lt: String
+  ville_lte: String
+  ville_gt: String
+  ville_gte: String
+  ville_contains: String
+  ville_not_contains: String
+  ville_starts_with: String
+  ville_not_starts_with: String
+  ville_ends_with: String
+  ville_not_ends_with: String
+  quartier: String
+  quartier_not: String
+  quartier_in: [String!]
+  quartier_not_in: [String!]
+  quartier_lt: String
+  quartier_lte: String
+  quartier_gt: String
+  quartier_gte: String
+  quartier_contains: String
+  quartier_not_contains: String
+  quartier_starts_with: String
+  quartier_not_starts_with: String
+  quartier_ends_with: String
+  quartier_not_ends_with: String
+  email: String
+  email_not: String
+  email_in: [String!]
+  email_not_in: [String!]
+  email_lt: String
+  email_lte: String
+  email_gt: String
+  email_gte: String
+  email_contains: String
+  email_not_contains: String
+  email_starts_with: String
+  email_not_starts_with: String
+  email_ends_with: String
+  email_not_ends_with: String
+  phone: String
+  phone_not: String
+  phone_in: [String!]
+  phone_not_in: [String!]
+  phone_lt: String
+  phone_lte: String
+  phone_gt: String
+  phone_gte: String
+  phone_contains: String
+  phone_not_contains: String
+  phone_starts_with: String
+  phone_not_starts_with: String
+  phone_ends_with: String
+  phone_not_ends_with: String
+  password: String
+  password_not: String
+  password_in: [String!]
+  password_not_in: [String!]
+  password_lt: String
+  password_lte: String
+  password_gt: String
+  password_gte: String
+  password_contains: String
+  password_not_contains: String
+  password_starts_with: String
+  password_not_starts_with: String
+  password_ends_with: String
+  password_not_ends_with: String
+  avatar: String
+  avatar_not: String
+  avatar_in: [String!]
+  avatar_not_in: [String!]
+  avatar_lt: String
+  avatar_lte: String
+  avatar_gt: String
+  avatar_gte: String
+  avatar_contains: String
+  avatar_not_contains: String
+  avatar_starts_with: String
+  avatar_not_starts_with: String
+  avatar_ends_with: String
+  avatar_not_ends_with: String
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  AND: [ProfilWhereInput!]
+  OR: [ProfilWhereInput!]
+  NOT: [ProfilWhereInput!]
+}
+
+input ProfilWhereUniqueInput {
+  id: ID
 }
 
 type Pub {
@@ -267,6 +533,9 @@ input PubWhereUniqueInput {
 }
 
 type Query {
+  profil(where: ProfilWhereUniqueInput!): Profil
+  profils(where: ProfilWhereInput, orderBy: ProfilOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Profil]!
+  profilsConnection(where: ProfilWhereInput, orderBy: ProfilOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ProfilConnection!
   pub(where: PubWhereUniqueInput!): Pub
   pubs(where: PubWhereInput, orderBy: PubOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Pub]!
   pubsConnection(where: PubWhereInput, orderBy: PubOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PubConnection!
@@ -277,6 +546,7 @@ type Query {
 }
 
 type Subscription {
+  profil(where: ProfilSubscriptionWhereInput): ProfilSubscriptionPayload
   pub(where: PubSubscriptionWhereInput): PubSubscriptionPayload
   tshirt(where: TshirtSubscriptionWhereInput): TshirtSubscriptionPayload
 }
