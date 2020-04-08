@@ -16,7 +16,7 @@ type Subscription{
 type Mutation{
     shop(name: String!,description: String!,pays: String!,ville: String!,localisation: String!,contact: String!,affiche: Upload!,password:String!): Shop
     article(name:String!,description: String!,price: String!,shop: ID!,images: [Upload!]!):Article
-    profil(name:String!,pays:String!,ville:String!,quartier:String!,email:String,phone:String!,password:String!,avatar:Upload!):Profil
+    profil(name:String!,description:String!,pays:String!,ville:String!,quartier:String!,email:String,phone:String!,password:String!,avatar:Upload!):Profil
     tshirt(title:String!,description:String!,price:String!,images:[Upload!]!,contact:String):Tshirt
     pub(enterprise:String!,enterpriseDescription:String!,title:String!,description:String!,medias:[Upload!]!,contact:String!):Pub
 }
@@ -43,6 +43,7 @@ type Pub{
 type Profil{
     id: ID! 
     name: String!
+    description: String!
     pays: String!
     ville: String!
     quartier: String!

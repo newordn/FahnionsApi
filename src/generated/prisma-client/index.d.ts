@@ -274,6 +274,8 @@ export type ProfilOrderByInput =
   | "id_DESC"
   | "name_ASC"
   | "name_DESC"
+  | "description_ASC"
+  | "description_DESC"
   | "pays_ASC"
   | "pays_DESC"
   | "ville_ASC"
@@ -567,6 +569,20 @@ export interface ProfilWhereInput {
   name_not_starts_with?: Maybe<String>;
   name_ends_with?: Maybe<String>;
   name_not_ends_with?: Maybe<String>;
+  description?: Maybe<String>;
+  description_not?: Maybe<String>;
+  description_in?: Maybe<String[] | String>;
+  description_not_in?: Maybe<String[] | String>;
+  description_lt?: Maybe<String>;
+  description_lte?: Maybe<String>;
+  description_gt?: Maybe<String>;
+  description_gte?: Maybe<String>;
+  description_contains?: Maybe<String>;
+  description_not_contains?: Maybe<String>;
+  description_starts_with?: Maybe<String>;
+  description_not_starts_with?: Maybe<String>;
+  description_ends_with?: Maybe<String>;
+  description_not_ends_with?: Maybe<String>;
   pays?: Maybe<String>;
   pays_not?: Maybe<String>;
   pays_in?: Maybe<String[] | String>;
@@ -1156,6 +1172,7 @@ export interface TshirtUpdateInput {
 
 export interface ProfilUpdateManyMutationInput {
   name?: Maybe<String>;
+  description?: Maybe<String>;
   pays?: Maybe<String>;
   ville?: Maybe<String>;
   quartier?: Maybe<String>;
@@ -1167,6 +1184,7 @@ export interface ProfilUpdateManyMutationInput {
 
 export interface ProfilUpdateInput {
   name?: Maybe<String>;
+  description?: Maybe<String>;
   pays?: Maybe<String>;
   ville?: Maybe<String>;
   quartier?: Maybe<String>;
@@ -1179,6 +1197,7 @@ export interface ProfilUpdateInput {
 export interface ProfilCreateInput {
   id?: Maybe<ID_Input>;
   name: String;
+  description: String;
   pays: String;
   ville: String;
   quartier: String;
@@ -1534,6 +1553,7 @@ export interface TshirtEdgeSubscription
 export interface Profil {
   id: ID_Output;
   name: String;
+  description: String;
   pays: String;
   ville: String;
   quartier: String;
@@ -1547,6 +1567,7 @@ export interface Profil {
 export interface ProfilPromise extends Promise<Profil>, Fragmentable {
   id: () => Promise<ID_Output>;
   name: () => Promise<String>;
+  description: () => Promise<String>;
   pays: () => Promise<String>;
   ville: () => Promise<String>;
   quartier: () => Promise<String>;
@@ -1562,6 +1583,7 @@ export interface ProfilSubscription
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   name: () => Promise<AsyncIterator<String>>;
+  description: () => Promise<AsyncIterator<String>>;
   pays: () => Promise<AsyncIterator<String>>;
   ville: () => Promise<AsyncIterator<String>>;
   quartier: () => Promise<AsyncIterator<String>>;
@@ -1577,6 +1599,7 @@ export interface ProfilNullablePromise
     Fragmentable {
   id: () => Promise<ID_Output>;
   name: () => Promise<String>;
+  description: () => Promise<String>;
   pays: () => Promise<String>;
   ville: () => Promise<String>;
   quartier: () => Promise<String>;
@@ -2097,6 +2120,7 @@ export interface ShopSubscriptionPayloadSubscription
 export interface ProfilPreviousValues {
   id: ID_Output;
   name: String;
+  description: String;
   pays: String;
   ville: String;
   quartier: String;
@@ -2112,6 +2136,7 @@ export interface ProfilPreviousValuesPromise
     Fragmentable {
   id: () => Promise<ID_Output>;
   name: () => Promise<String>;
+  description: () => Promise<String>;
   pays: () => Promise<String>;
   ville: () => Promise<String>;
   quartier: () => Promise<String>;
@@ -2127,6 +2152,7 @@ export interface ProfilPreviousValuesSubscription
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   name: () => Promise<AsyncIterator<String>>;
+  description: () => Promise<AsyncIterator<String>>;
   pays: () => Promise<AsyncIterator<String>>;
   ville: () => Promise<AsyncIterator<String>>;
   quartier: () => Promise<AsyncIterator<String>>;

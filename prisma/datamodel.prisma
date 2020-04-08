@@ -21,6 +21,7 @@ type Pub{
 type Profil{
     id: ID! @id
     name: String!
+    description: String!
     pays: String!
     ville: String!
     quartier: String!

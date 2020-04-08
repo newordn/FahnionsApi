@@ -377,6 +377,7 @@ type PageInfo {
 type Profil {
   id: ID!
   name: String!
+  description: String!
   pays: String!
   ville: String!
   quartier: String!
@@ -396,6 +397,7 @@ type ProfilConnection {
 input ProfilCreateInput {
   id: ID
   name: String!
+  description: String!
   pays: String!
   ville: String!
   quartier: String!
@@ -415,6 +417,8 @@ enum ProfilOrderByInput {
   id_DESC
   name_ASC
   name_DESC
+  description_ASC
+  description_DESC
   pays_ASC
   pays_DESC
   ville_ASC
@@ -436,6 +440,7 @@ enum ProfilOrderByInput {
 type ProfilPreviousValues {
   id: ID!
   name: String!
+  description: String!
   pays: String!
   ville: String!
   quartier: String!
@@ -466,6 +471,7 @@ input ProfilSubscriptionWhereInput {
 
 input ProfilUpdateInput {
   name: String
+  description: String
   pays: String
   ville: String
   quartier: String
@@ -477,6 +483,7 @@ input ProfilUpdateInput {
 
 input ProfilUpdateManyMutationInput {
   name: String
+  description: String
   pays: String
   ville: String
   quartier: String
@@ -515,6 +522,20 @@ input ProfilWhereInput {
   name_not_starts_with: String
   name_ends_with: String
   name_not_ends_with: String
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
   pays: String
   pays_not: String
   pays_in: [String!]
