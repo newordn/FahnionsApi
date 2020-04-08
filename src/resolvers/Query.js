@@ -19,9 +19,21 @@ async function profils(parent,args,context,info){
     
     return profils
 }
+async function shops(parent,args,context,info){
+    console.log('shops query')
+    let shops = await context.prisma.shops({orderBy:'id_DESC'})
+    return shops
+}
+async function articlesByShop(parent,args,context,info){
+    console.log('articles by shop query')
+    let articles = await context.prisma.shop({id:args.shopId}).articles()
+    return articles
+}
 module.exports={
    info,
     tshirts,
     pubs,
-    profils
+    profils,
+    shops,
+    articlesByShop
 }

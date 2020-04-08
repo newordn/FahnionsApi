@@ -21,9 +21,27 @@ async function profil(parent,args,context,info)
     const profil = await context.prisma.createProfil({...args,avatar:avatar.path,password})
     return profil
 }
+async function shop(parent,args,context,info)
+{
+    console.log('shop mutation')
+    let affiche =  await context.storeUpload(args.affiche)
+    const password = await bcrypt.hash(args.password,10)
+    const shop = await context.prisma.createShop({...args,affiche:affiche.path,password})
+    return shop
+}
+async function article(parent,args,context,info)
+{
+    console.log('article mutation')
+    let images = await Promise.all(args.images.map(async v=>await context.storeUpload(v)))
+    images = images.map(v=>v.path)
+    const article = await context.prisma.createArticle({...args,shop:{connect:{id:args.shop}},images:{set:images}})
+    return article
+}
 
 module.exports={
     tshirt,
     pub,
-    profil
+    profil,
+    shop,
+    article
 }

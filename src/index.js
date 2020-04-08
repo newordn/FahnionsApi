@@ -11,6 +11,8 @@ const {makeExecutableSchema} = require('graphql-tools')
 const Tshirt = require('./resolvers/Tshirt')
 const Pub = require('./resolvers/Pub')
 const Profil = require('./resolvers/Profil')
+const Shop = require('./resolvers/Shop')
+const Article = require('./resolvers/Article')
 const Subscription = require('./resolvers/Subscription')
 const resolvers = {
     Query,
@@ -18,6 +20,8 @@ const resolvers = {
     Tshirt,
     Pub,
     Profil,
+    Shop,
+    Article,
     Upload: GraphQLUpload,
     Subscription
 }

@@ -30,3 +30,25 @@ type Profil{
     avatar: String!
     createdAt: DateTime! @createdAt
 }
+type Shop{
+    id: ID! @id
+    name: String!
+    description: String!
+    pays: String!
+    ville: String!
+    localisation: String!
+    contact: String!
+    affiche: String!
+    password: String!
+    articles: [Article] @relation(name:"ShopArticle")
+    createdAt: DateTime! @createdAt
+}
+type Article {
+    id: ID! @id
+    name: String!
+    description: String!
+    price: String!
+    shop: Shop! @relation(name:"ShopArticle")
+    images: [String!]! @scalarList(strategy: RELATION)
+    createdAt: DateTime! @createdAt
+}

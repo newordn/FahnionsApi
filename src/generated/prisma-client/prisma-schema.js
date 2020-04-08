@@ -3,7 +3,11 @@ module.exports = {
   // Please don't change this file manually but run `prisma generate` to update it.
   // For more information, please read the docs: https://www.prisma.io/docs/prisma-client/
 
-/* GraphQL */ `type AggregateProfil {
+/* GraphQL */ `type AggregateArticle {
+  count: Int!
+}
+
+type AggregateProfil {
   count: Int!
 }
 
@@ -11,8 +15,305 @@ type AggregatePub {
   count: Int!
 }
 
+type AggregateShop {
+  count: Int!
+}
+
 type AggregateTshirt {
   count: Int!
+}
+
+type Article {
+  id: ID!
+  name: String!
+  description: String!
+  price: String!
+  shop: Shop!
+  images: [String!]!
+  createdAt: DateTime!
+}
+
+type ArticleConnection {
+  pageInfo: PageInfo!
+  edges: [ArticleEdge]!
+  aggregate: AggregateArticle!
+}
+
+input ArticleCreateimagesInput {
+  set: [String!]
+}
+
+input ArticleCreateInput {
+  id: ID
+  name: String!
+  description: String!
+  price: String!
+  shop: ShopCreateOneWithoutArticlesInput!
+  images: ArticleCreateimagesInput
+}
+
+input ArticleCreateManyWithoutShopInput {
+  create: [ArticleCreateWithoutShopInput!]
+  connect: [ArticleWhereUniqueInput!]
+}
+
+input ArticleCreateWithoutShopInput {
+  id: ID
+  name: String!
+  description: String!
+  price: String!
+  images: ArticleCreateimagesInput
+}
+
+type ArticleEdge {
+  node: Article!
+  cursor: String!
+}
+
+enum ArticleOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  description_ASC
+  description_DESC
+  price_ASC
+  price_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type ArticlePreviousValues {
+  id: ID!
+  name: String!
+  description: String!
+  price: String!
+  images: [String!]!
+  createdAt: DateTime!
+}
+
+input ArticleScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  price: String
+  price_not: String
+  price_in: [String!]
+  price_not_in: [String!]
+  price_lt: String
+  price_lte: String
+  price_gt: String
+  price_gte: String
+  price_contains: String
+  price_not_contains: String
+  price_starts_with: String
+  price_not_starts_with: String
+  price_ends_with: String
+  price_not_ends_with: String
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  AND: [ArticleScalarWhereInput!]
+  OR: [ArticleScalarWhereInput!]
+  NOT: [ArticleScalarWhereInput!]
+}
+
+type ArticleSubscriptionPayload {
+  mutation: MutationType!
+  node: Article
+  updatedFields: [String!]
+  previousValues: ArticlePreviousValues
+}
+
+input ArticleSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: ArticleWhereInput
+  AND: [ArticleSubscriptionWhereInput!]
+  OR: [ArticleSubscriptionWhereInput!]
+  NOT: [ArticleSubscriptionWhereInput!]
+}
+
+input ArticleUpdateimagesInput {
+  set: [String!]
+}
+
+input ArticleUpdateInput {
+  name: String
+  description: String
+  price: String
+  shop: ShopUpdateOneRequiredWithoutArticlesInput
+  images: ArticleUpdateimagesInput
+}
+
+input ArticleUpdateManyDataInput {
+  name: String
+  description: String
+  price: String
+  images: ArticleUpdateimagesInput
+}
+
+input ArticleUpdateManyMutationInput {
+  name: String
+  description: String
+  price: String
+  images: ArticleUpdateimagesInput
+}
+
+input ArticleUpdateManyWithoutShopInput {
+  create: [ArticleCreateWithoutShopInput!]
+  delete: [ArticleWhereUniqueInput!]
+  connect: [ArticleWhereUniqueInput!]
+  set: [ArticleWhereUniqueInput!]
+  disconnect: [ArticleWhereUniqueInput!]
+  update: [ArticleUpdateWithWhereUniqueWithoutShopInput!]
+  upsert: [ArticleUpsertWithWhereUniqueWithoutShopInput!]
+  deleteMany: [ArticleScalarWhereInput!]
+  updateMany: [ArticleUpdateManyWithWhereNestedInput!]
+}
+
+input ArticleUpdateManyWithWhereNestedInput {
+  where: ArticleScalarWhereInput!
+  data: ArticleUpdateManyDataInput!
+}
+
+input ArticleUpdateWithoutShopDataInput {
+  name: String
+  description: String
+  price: String
+  images: ArticleUpdateimagesInput
+}
+
+input ArticleUpdateWithWhereUniqueWithoutShopInput {
+  where: ArticleWhereUniqueInput!
+  data: ArticleUpdateWithoutShopDataInput!
+}
+
+input ArticleUpsertWithWhereUniqueWithoutShopInput {
+  where: ArticleWhereUniqueInput!
+  update: ArticleUpdateWithoutShopDataInput!
+  create: ArticleCreateWithoutShopInput!
+}
+
+input ArticleWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  price: String
+  price_not: String
+  price_in: [String!]
+  price_not_in: [String!]
+  price_lt: String
+  price_lte: String
+  price_gt: String
+  price_gte: String
+  price_contains: String
+  price_not_contains: String
+  price_starts_with: String
+  price_not_starts_with: String
+  price_ends_with: String
+  price_not_ends_with: String
+  shop: ShopWhereInput
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  AND: [ArticleWhereInput!]
+  OR: [ArticleWhereInput!]
+  NOT: [ArticleWhereInput!]
+}
+
+input ArticleWhereUniqueInput {
+  id: ID
 }
 
 type BatchPayload {
@@ -24,6 +325,12 @@ scalar DateTime
 scalar Long
 
 type Mutation {
+  createArticle(data: ArticleCreateInput!): Article!
+  updateArticle(data: ArticleUpdateInput!, where: ArticleWhereUniqueInput!): Article
+  updateManyArticles(data: ArticleUpdateManyMutationInput!, where: ArticleWhereInput): BatchPayload!
+  upsertArticle(where: ArticleWhereUniqueInput!, create: ArticleCreateInput!, update: ArticleUpdateInput!): Article!
+  deleteArticle(where: ArticleWhereUniqueInput!): Article
+  deleteManyArticles(where: ArticleWhereInput): BatchPayload!
   createProfil(data: ProfilCreateInput!): Profil!
   updateProfil(data: ProfilUpdateInput!, where: ProfilWhereUniqueInput!): Profil
   updateManyProfils(data: ProfilUpdateManyMutationInput!, where: ProfilWhereInput): BatchPayload!
@@ -36,6 +343,12 @@ type Mutation {
   upsertPub(where: PubWhereUniqueInput!, create: PubCreateInput!, update: PubUpdateInput!): Pub!
   deletePub(where: PubWhereUniqueInput!): Pub
   deleteManyPubs(where: PubWhereInput): BatchPayload!
+  createShop(data: ShopCreateInput!): Shop!
+  updateShop(data: ShopUpdateInput!, where: ShopWhereUniqueInput!): Shop
+  updateManyShops(data: ShopUpdateManyMutationInput!, where: ShopWhereInput): BatchPayload!
+  upsertShop(where: ShopWhereUniqueInput!, create: ShopCreateInput!, update: ShopUpdateInput!): Shop!
+  deleteShop(where: ShopWhereUniqueInput!): Shop
+  deleteManyShops(where: ShopWhereInput): BatchPayload!
   createTshirt(data: TshirtCreateInput!): Tshirt!
   updateTshirt(data: TshirtUpdateInput!, where: TshirtWhereUniqueInput!): Tshirt
   updateManyTshirts(data: TshirtUpdateManyMutationInput!, where: TshirtWhereInput): BatchPayload!
@@ -533,21 +846,331 @@ input PubWhereUniqueInput {
 }
 
 type Query {
+  article(where: ArticleWhereUniqueInput!): Article
+  articles(where: ArticleWhereInput, orderBy: ArticleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Article]!
+  articlesConnection(where: ArticleWhereInput, orderBy: ArticleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ArticleConnection!
   profil(where: ProfilWhereUniqueInput!): Profil
   profils(where: ProfilWhereInput, orderBy: ProfilOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Profil]!
   profilsConnection(where: ProfilWhereInput, orderBy: ProfilOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ProfilConnection!
   pub(where: PubWhereUniqueInput!): Pub
   pubs(where: PubWhereInput, orderBy: PubOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Pub]!
   pubsConnection(where: PubWhereInput, orderBy: PubOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PubConnection!
+  shop(where: ShopWhereUniqueInput!): Shop
+  shops(where: ShopWhereInput, orderBy: ShopOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Shop]!
+  shopsConnection(where: ShopWhereInput, orderBy: ShopOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ShopConnection!
   tshirt(where: TshirtWhereUniqueInput!): Tshirt
   tshirts(where: TshirtWhereInput, orderBy: TshirtOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Tshirt]!
   tshirtsConnection(where: TshirtWhereInput, orderBy: TshirtOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): TshirtConnection!
   node(id: ID!): Node
 }
 
+type Shop {
+  id: ID!
+  name: String!
+  description: String!
+  pays: String!
+  ville: String!
+  localisation: String!
+  contact: String!
+  affiche: String!
+  password: String!
+  articles(where: ArticleWhereInput, orderBy: ArticleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Article!]
+  createdAt: DateTime!
+}
+
+type ShopConnection {
+  pageInfo: PageInfo!
+  edges: [ShopEdge]!
+  aggregate: AggregateShop!
+}
+
+input ShopCreateInput {
+  id: ID
+  name: String!
+  description: String!
+  pays: String!
+  ville: String!
+  localisation: String!
+  contact: String!
+  affiche: String!
+  password: String!
+  articles: ArticleCreateManyWithoutShopInput
+}
+
+input ShopCreateOneWithoutArticlesInput {
+  create: ShopCreateWithoutArticlesInput
+  connect: ShopWhereUniqueInput
+}
+
+input ShopCreateWithoutArticlesInput {
+  id: ID
+  name: String!
+  description: String!
+  pays: String!
+  ville: String!
+  localisation: String!
+  contact: String!
+  affiche: String!
+  password: String!
+}
+
+type ShopEdge {
+  node: Shop!
+  cursor: String!
+}
+
+enum ShopOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  description_ASC
+  description_DESC
+  pays_ASC
+  pays_DESC
+  ville_ASC
+  ville_DESC
+  localisation_ASC
+  localisation_DESC
+  contact_ASC
+  contact_DESC
+  affiche_ASC
+  affiche_DESC
+  password_ASC
+  password_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type ShopPreviousValues {
+  id: ID!
+  name: String!
+  description: String!
+  pays: String!
+  ville: String!
+  localisation: String!
+  contact: String!
+  affiche: String!
+  password: String!
+  createdAt: DateTime!
+}
+
+type ShopSubscriptionPayload {
+  mutation: MutationType!
+  node: Shop
+  updatedFields: [String!]
+  previousValues: ShopPreviousValues
+}
+
+input ShopSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: ShopWhereInput
+  AND: [ShopSubscriptionWhereInput!]
+  OR: [ShopSubscriptionWhereInput!]
+  NOT: [ShopSubscriptionWhereInput!]
+}
+
+input ShopUpdateInput {
+  name: String
+  description: String
+  pays: String
+  ville: String
+  localisation: String
+  contact: String
+  affiche: String
+  password: String
+  articles: ArticleUpdateManyWithoutShopInput
+}
+
+input ShopUpdateManyMutationInput {
+  name: String
+  description: String
+  pays: String
+  ville: String
+  localisation: String
+  contact: String
+  affiche: String
+  password: String
+}
+
+input ShopUpdateOneRequiredWithoutArticlesInput {
+  create: ShopCreateWithoutArticlesInput
+  update: ShopUpdateWithoutArticlesDataInput
+  upsert: ShopUpsertWithoutArticlesInput
+  connect: ShopWhereUniqueInput
+}
+
+input ShopUpdateWithoutArticlesDataInput {
+  name: String
+  description: String
+  pays: String
+  ville: String
+  localisation: String
+  contact: String
+  affiche: String
+  password: String
+}
+
+input ShopUpsertWithoutArticlesInput {
+  update: ShopUpdateWithoutArticlesDataInput!
+  create: ShopCreateWithoutArticlesInput!
+}
+
+input ShopWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  pays: String
+  pays_not: String
+  pays_in: [String!]
+  pays_not_in: [String!]
+  pays_lt: String
+  pays_lte: String
+  pays_gt: String
+  pays_gte: String
+  pays_contains: String
+  pays_not_contains: String
+  pays_starts_with: String
+  pays_not_starts_with: String
+  pays_ends_with: String
+  pays_not_ends_with: String
+  ville: String
+  ville_not: String
+  ville_in: [String!]
+  ville_not_in: [String!]
+  ville_lt: String
+  ville_lte: String
+  ville_gt: String
+  ville_gte: String
+  ville_contains: String
+  ville_not_contains: String
+  ville_starts_with: String
+  ville_not_starts_with: String
+  ville_ends_with: String
+  ville_not_ends_with: String
+  localisation: String
+  localisation_not: String
+  localisation_in: [String!]
+  localisation_not_in: [String!]
+  localisation_lt: String
+  localisation_lte: String
+  localisation_gt: String
+  localisation_gte: String
+  localisation_contains: String
+  localisation_not_contains: String
+  localisation_starts_with: String
+  localisation_not_starts_with: String
+  localisation_ends_with: String
+  localisation_not_ends_with: String
+  contact: String
+  contact_not: String
+  contact_in: [String!]
+  contact_not_in: [String!]
+  contact_lt: String
+  contact_lte: String
+  contact_gt: String
+  contact_gte: String
+  contact_contains: String
+  contact_not_contains: String
+  contact_starts_with: String
+  contact_not_starts_with: String
+  contact_ends_with: String
+  contact_not_ends_with: String
+  affiche: String
+  affiche_not: String
+  affiche_in: [String!]
+  affiche_not_in: [String!]
+  affiche_lt: String
+  affiche_lte: String
+  affiche_gt: String
+  affiche_gte: String
+  affiche_contains: String
+  affiche_not_contains: String
+  affiche_starts_with: String
+  affiche_not_starts_with: String
+  affiche_ends_with: String
+  affiche_not_ends_with: String
+  password: String
+  password_not: String
+  password_in: [String!]
+  password_not_in: [String!]
+  password_lt: String
+  password_lte: String
+  password_gt: String
+  password_gte: String
+  password_contains: String
+  password_not_contains: String
+  password_starts_with: String
+  password_not_starts_with: String
+  password_ends_with: String
+  password_not_ends_with: String
+  articles_every: ArticleWhereInput
+  articles_some: ArticleWhereInput
+  articles_none: ArticleWhereInput
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  AND: [ShopWhereInput!]
+  OR: [ShopWhereInput!]
+  NOT: [ShopWhereInput!]
+}
+
+input ShopWhereUniqueInput {
+  id: ID
+}
+
 type Subscription {
+  article(where: ArticleSubscriptionWhereInput): ArticleSubscriptionPayload
   profil(where: ProfilSubscriptionWhereInput): ProfilSubscriptionPayload
   pub(where: PubSubscriptionWhereInput): PubSubscriptionPayload
+  shop(where: ShopSubscriptionWhereInput): ShopSubscriptionPayload
   tshirt(where: TshirtSubscriptionWhereInput): TshirtSubscriptionPayload
 }
 
