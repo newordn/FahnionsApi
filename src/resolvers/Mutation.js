@@ -16,9 +16,11 @@ async function pub(parent,args,context,info)
 async function profil(parent,args,context,info)
 {
     console.log('profil mutation')
-    let avatar =  await context.storeUpload(args.avatar)
+    let avatar = args.avatar
+    if(avatar!=null)
+    avatar =  await context.storeUpload(args.avatar)
     const password = await bcrypt.hash(args.password,10)
-    const profil = await context.prisma.createProfil({...args,avatar:avatar.path,password})
+    const profil = await context.prisma.createProfil({...args,avatar:avatar?avatar.path:"",password})
     return profil
 }
 async function shop(parent,args,context,info)
