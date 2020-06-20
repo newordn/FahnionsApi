@@ -649,6 +649,7 @@ input ProfilWhereInput {
 
 input ProfilWhereUniqueInput {
   id: ID
+  phone: String
 }
 
 type Pub {

@@ -23,6 +23,21 @@ async function profil(parent,args,context,info)
     const profil = await context.prisma.createProfil({...args,avatar:avatar?avatar.path:"",password})
     return profil
 }
+async function profilConnexion(parent,args,context,info)
+{
+    console.log('profil connexion mutation')
+    const user =  await context.prisma.profil({phone:args.phone})
+    if(!user){
+        throw new Error("L'utilisateur n'existe pas. Inscrivez-vous")
+    }
+    const valid = await bcrypt.compare(args.password,user.password)
+    if(!valid){
+        throw new Error('Mot de passe incorrect')
+    }
+   
+    return user
+
+}
 async function shop(parent,args,context,info)
 {
     console.log('shop mutation')
@@ -45,5 +60,6 @@ module.exports={
     pub,
     profil,
     shop,
+    profilConnexion,
     article
 }
